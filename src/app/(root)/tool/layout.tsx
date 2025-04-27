@@ -15,7 +15,7 @@ const layout = ({children}:{children:React.ReactNode}) => {
     <>
       <header className='bg-red-500'>
         <MainContainer>
-          <nav className='w-full py-[1rem] px-[1rem] xl:px-0 flex items-center justify-between'>
+          <nav className='w-full py-[1rem] px-[1rem] 2xl:px-0 flex items-center justify-between'>
             <Button variant={'default'} className='cursor-pointer' aria-label='back-button'>back</Button>
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />
@@ -24,7 +24,7 @@ const layout = ({children}:{children:React.ReactNode}) => {
           </nav>
         </MainContainer>
       </header>
-      <main>
+      <main className='px-[.5rem] md:px-[1rem] 2xl:px-0'>
         <MainContainer>
           {children}
         </MainContainer>
