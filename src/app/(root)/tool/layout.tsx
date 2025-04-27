@@ -13,7 +13,7 @@ export const metadata:Metadata = {
 const layout = ({children}:{children:React.ReactNode}) => {
   return (
     <>
-      <header className='bg-red-500'>
+      <header className='fixed top-0 left-0 w-full bg-red-500'>
         <MainContainer>
           <nav className='w-full py-[1rem] px-[1rem] 2xl:px-0 flex items-center justify-between'>
             <Button variant={'default'} className='cursor-pointer' aria-label='back-button'>back</Button>
@@ -24,7 +24,8 @@ const layout = ({children}:{children:React.ReactNode}) => {
           </nav>
         </MainContainer>
       </header>
-      <main className='px-[.5rem] md:px-[1rem] 2xl:px-0'>
+
+      <main className='pt-[70px] px-[.5rem] md:px-[1rem] 2xl:px-0'>
         <MainContainer>
           {children}
         </MainContainer>
