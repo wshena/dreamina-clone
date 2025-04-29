@@ -1,8 +1,7 @@
+import { LeftArrowIcon } from '@/components/icon/Icon'
 import MainContainer from '@/components/MainContainer'
 import ProfilePopover from '@/components/ProfilePopover'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { AvatarImage } from '@radix-ui/react-avatar'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import React from 'react'
@@ -15,22 +14,27 @@ export const metadata:Metadata = {
 const layout = ({children}:{children:React.ReactNode}) => {
   return (
     <>
-      <header className='fixed top-0 left-0 w-full z-50'>
+      <header className='fixed top-0 left-0 w-full z-50 bg-[rgb(15, 17, 21)]' style={{
+        backgroundColor: 'rgb(15, 17, 21)'
+      }}>
         <MainContainer>
           <nav className='w-full py-[1rem] px-[1rem] 2xl:px-0 flex items-center justify-between'>
             <Link href={'/'}>
-              <Button variant={'default'} className='cursor-pointer' aria-label='back-button'>back</Button>
+              <Button variant={'default'} className='cursor-pointer' aria-label='back-button'>
+                <LeftArrowIcon size={18} color='white' />
+                <span className='capitalize'>back</span>
+              </Button>
             </Link>
             <ProfilePopover />
           </nav>
         </MainContainer>
       </header>
 
-      <main className='pt-[70px] px-[.5rem] md:px-[1rem] 2xl:px-0'>
+      <div className='pt-[70px] px-[.5rem] md:px-[1rem] 2xl:px-0'>
         <MainContainer>
           {children}
         </MainContainer>
-      </main>
+      </div>
     </>
   )
 }

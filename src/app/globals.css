@@ -126,6 +126,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   background-color: rgb(15, 17, 21);
+  color: white;
 }
 
 *,*::after,*::before {  
