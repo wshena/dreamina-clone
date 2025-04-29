@@ -1,23 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+interface initialStateProps {
+  aspectRatio: string
+}
+
+const initialState:initialStateProps = {
+  aspectRatio: ''
+}
 
 export const utilitySlice = createSlice({
   name: 'utility',
-  initialState: {
-    value: 0
-  },
+  initialState: initialState,
   reducers: {
-    increment: state => {
-      state.value += 1
-    },
-    decrement: state => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
+    setAspectRatio: (state, action:PayloadAction<string>) => {
+      state.aspectRatio = action.payload
     }
   }
 })
 
-export const { increment, decrement, incrementByAmount } = utilitySlice.actions
+export const { setAspectRatio } = utilitySlice.actions
 
 export default utilitySlice.reducer

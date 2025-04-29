@@ -1,5 +1,6 @@
 import Card from '@/components/Card'
 import { FolderIcon } from '@/components/icon/Icon'
+import PromptSection from '@/components/PromptSection'
 import ResultContainer from '@/components/ResultContainer'
 import ResultSkeleton from '@/components/skeleton/ResultSkeleton'
 import { GenerateImage } from '@/utils/gemini'
@@ -12,9 +13,7 @@ const page = async () => {
     <div className='flex items-start gap-[10px] flex-col lg:flex-row'>
       {/* prompt section */}
       <section className='w-full lg:w-[30%]'>
-        <Card>
-          <h1>hello</h1>
-        </Card>
+        <PromptSection />
       </section>
 
       {/* output section */}
