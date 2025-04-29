@@ -46,23 +46,23 @@ const SizeInput = ({
 
   return (
     <div className="flex items-center gap-3">
-      <div className="flex items-center gap-2 border p-2 rounded-md">
+      <div className="flex items-center gap-2 border py-2 px-4 rounded-md">
         <span className="text-sm">W</span>
         <Input 
           placeholder='864'
           value={value?.width}
           onChange={(e) => handleChange('width', e.target.value)}
-          className="w-24 border-none focus-visible:ring-0 focus-visible:ring-offset-0 border-none"
+          className="w-full md:w-24 lg:w-16 xl:w-20 border-none focus-visible:ring-0 focus-visible:ring-offset-0 border-none"
           type="text"
         />
       </div>
-      <div className="flex items-center gap-2 border p-2 rounded-md">
+      <div className="flex items-center gap-2 border py-2 px-4 rounded-md">
         <span className="text-sm">H</span>
         <Input 
           placeholder='864'
           value={value.height}
           onChange={(e) => handleChange('height', e.target.value)}
-          className="w-24 border-none focus-visible:ring-0 focus-visible:ring-offset-0 border-none"
+          className="w-full md:w-24 lg:w-16 xl:w-20 border-none focus-visible:ring-0 focus-visible:ring-offset-0 border-none"
           type="text"
         />
       </div>

@@ -26,7 +26,7 @@ const SmallImage = ({ data }: { data: any | undefined }) => {
   const isValidBase64 = /^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$/.test(decodedData)
   
   return (
-    <div onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} className="relative w-[40%] h-[300px] rounded-[10px] cursor-pointer">
+    <div onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} className="relative w-full md:w-[40%] h-[300px] rounded-[10px] cursor-pointer">
       {isValidBase64 ? (
         <Image
           src={`data:image/webp;base64,${decodedData}`}
