@@ -14,7 +14,7 @@ export const metadata:Metadata = {
 
 const layout = async ({children}:{children:React.ReactNode}) => {
   const currentUser = await getCurrentUser();
-  console.log(currentUser)
+  
   return (
     <>
       <header className='fixed top-0 left-0 w-full z-50 bg-[rgb(15, 17, 21)]' style={{

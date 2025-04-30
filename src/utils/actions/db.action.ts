@@ -35,3 +35,18 @@ export async function getAllUserImageGenerate(userId:string) {
     data: data
   }
 }
+
+export async function deleteImageBatch(id:string) {
+  const { data, error: err } = await supabase
+    .from('image-result')
+    .delete()
+    .eq('id', id)
+    .select()
+
+  if (err) {
+    console.error('gagal hapus answer:', err);
+    return { success: false, error: err.message };
+  }
+
+  return {success: true, data: data}
+}

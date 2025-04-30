@@ -1,8 +1,11 @@
 import React from 'react'
 import { DreaminaIcon } from './icon/Icon'
 import SmallImage from './SmallImage'
+import RepromptButton from './button/RepromptButton'
+import RegenerateButton from './button/RegenerateButton'
+import DeleteBatchButton from './button/DeleteBatchButton'
 
-const ResultContainer = ({image, prompt}:{image:any, prompt:string}) => {
+const ResultContainer = ({image, prompt, id, onDelete}:{image:any, prompt:string, id:string, onDelete:any}) => {
   return (
     <div className="w-full flex items-start gap-[10px]">
       <div className="">
@@ -14,9 +17,14 @@ const ResultContainer = ({image, prompt}:{image:any, prompt:string}) => {
             <span className='font-bold'>Dreamina | AI Images</span>
             <span className='text-gray-600 text-[1rem]'>29 April 2025, 12:39</span>
           </div>
-          <p>{prompt}</p>
+          <p className='text-[.9rem]'>{prompt}</p>
         </div>
-        <SmallImage data={image?.data?.base64} />
+        <SmallImage data={image} />
+        <div className="flex items-center gap-[8px]">
+          <RepromptButton />
+          <RegenerateButton />
+          <DeleteBatchButton batchId={id} onDelete={onDelete} />
+        </div>
       </div>
     </div>
   )

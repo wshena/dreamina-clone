@@ -211,7 +211,9 @@ const PromptSection = ({user}:{user:any}) => {
               Please wait
             </Button>
           ) : (
-            <Button type="submit" className="w-full py-6 cursor-pointer">
+            <Button type="submit" className="w-full py-5 cursor-pointer text-black" style={{
+              backgroundColor: 'rgb(0, 202, 224)'
+            }}>
               Generate Image
             </Button>
           )}
