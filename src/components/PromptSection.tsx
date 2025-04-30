@@ -22,6 +22,7 @@ import { aspectRatio } from '@/consts'
 import { cn } from '@/lib/utils'
 import { toast } from 'sonner'
 import { Loader2 } from 'lucide-react'
+import { addImageResult } from '@/utils/actions/db.action'
 
 // Perbaiki schema validasi:
 const formSchema = z.object({
@@ -100,7 +101,7 @@ const AspectRatioInput = ({
   )
 }
 
-const PromptSection = () => {
+const PromptSection = ({user}:{user:any}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -118,11 +119,13 @@ const PromptSection = () => {
   async function onSubmit(values: z.infer<typeof formSchema>) {    
     console.log("Submitted values:", values);
     setIsLoading(true);
+
     try {
       const res = await axios.post('/api/image/generate', {
         prompt: values.prompt,
         aspectRatio: values.aspectRatio,
-        size: values.size
+        size: values.size,
+        userId: user?.id
       }, {
         headers: {
           'Content-Type': 'application/json'
@@ -134,10 +137,7 @@ const PromptSection = () => {
       if (!res.data.success) {
         throw new Error(res.data.error || 'Failed to generate image');
       }
-  
-      // Handle successful response
-      // const imageData = res?.data;
-      
+
     } catch (error:any) {
       console.error("Error submitting form:", error);
       // Tambahkan error handling ke UI

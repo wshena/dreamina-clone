@@ -3,17 +3,17 @@ import { FolderIcon } from '@/components/icon/Icon'
 import PromptSection from '@/components/PromptSection'
 import ResultContainer from '@/components/ResultContainer'
 import ResultSkeleton from '@/components/skeleton/ResultSkeleton'
-import { GenerateImage } from '@/utils/gemini'
+import { getCurrentUser } from '@/utils/actions/auth.action'
 import React from 'react'
 
 const page = async () => {
-  const image = await GenerateImage('generate an image of 2B from nier automata, in pool, wearing white shirt, half body, under the moon light, realistic style');
+  const currentUser = await getCurrentUser();
 
   return (
     <div className='flex items-start gap-[10px] flex-col lg:flex-row'>
       {/* prompt section */}
       <section className='w-full lg:w-[30%]'>
-        <PromptSection />
+        <PromptSection user={currentUser} />
       </section>
 
       {/* output section */}
@@ -24,8 +24,8 @@ const page = async () => {
               <button aria-label='show-result-button' className='p-[.5rem] border border-gray-500 rounded-[10px] cursor-pointer'><FolderIcon size={15} color='white' /></button>
             </div>
             <div className="w-full flex flex-col items-start gap-[20px]">
-              {/* <ResultSkeleton /> */}
-              <ResultContainer image={image} prompt='2B from nier automata, in pool, wearing white shirt, half body, under the moon light, realistic style' />
+              <ResultSkeleton />
+              {/* <ResultContainer image={image} prompt='2B from nier automata, in pool, wearing white shirt, half body, under the moon light, realistic style' /> */}
             </div>
           </div>
         </Card>
