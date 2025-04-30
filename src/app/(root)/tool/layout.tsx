@@ -2,6 +2,7 @@ import { LeftArrowIcon } from '@/components/icon/Icon'
 import MainContainer from '@/components/MainContainer'
 import ProfilePopover from '@/components/ProfilePopover'
 import { Button } from '@/components/ui/button'
+import { getCurrentUser } from '@/utils/actions/auth.action'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import React from 'react'
@@ -11,7 +12,9 @@ export const metadata:Metadata = {
   description: 'Dreamina clone'
 }
 
-const layout = ({children}:{children:React.ReactNode}) => {
+const layout = async ({children}:{children:React.ReactNode}) => {
+  const currentUser = await getCurrentUser();
+  console.log(currentUser)
   return (
     <>
       <header className='fixed top-0 left-0 w-full z-50 bg-[rgb(15, 17, 21)]' style={{
@@ -25,7 +28,7 @@ const layout = ({children}:{children:React.ReactNode}) => {
                 <span className='capitalize'>back</span>
               </Button>
             </Link>
-            <ProfilePopover />
+            <ProfilePopover user={currentUser} />
           </nav>
         </MainContainer>
       </header>

@@ -1,6 +1,9 @@
-import Image from "next/image";
+import { getCurrentUser } from "@/utils/actions/auth.action";
 
-export default function Home() {
+export default async function Home() {
+  const currentUser = await getCurrentUser();
+  console.log(currentUser)
+  
   return (
     <div className="">
       <h1>hello world</h1>

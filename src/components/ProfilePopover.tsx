@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import {
   Popover,
   PopoverContent,
@@ -6,8 +7,12 @@ import {
 } from "@/components/ui/popover"
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { Button } from './ui/button'
+import { Loader2 } from 'lucide-react'
+import { supabase } from '@/utils/supabase/client'
 
-const ProfilePopover = () => {
+const ProfilePopover = ({user}:{user:any}) => {
+  const [loading, setLoading] = useState<boolean>(false);
+
   return (
     <Popover>
       <PopoverTrigger className='cursor-pointer'>
@@ -22,8 +27,28 @@ const ProfilePopover = () => {
         outlineColor: 'rgba(224, 245, 255, 0.6)'
       }}>
         <div className="flex items-start flex-col gap-[15px]">
-          <h1>Arthur Morgan</h1>
-          <Button variant={'ghost'} className='w-full p-[.7rem] cursor-pointer'>Sign out</Button>
+          <h1>{user?.email}</h1>
+          <Button variant={'ghost'} onClick={async () => {
+            setLoading(true);
+            try {
+              const { error } = await supabase.auth.signOut();
+              
+              if (error) {
+                console.log(error);
+                return
+              }
+
+              window.location.href = '/sign-in';
+            } catch (error) {
+              console.log(error)
+            } finally {
+              setLoading(false)
+            }
+          }} className='w-full p-[.7rem] cursor-pointer'>
+            {loading ? (
+              <Loader2 className="animate-spin" />
+            ) : ('Sign out')}
+          </Button>
         </div>
       </PopoverContent>
     </Popover>

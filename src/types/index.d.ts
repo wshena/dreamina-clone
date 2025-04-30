@@ -3,3 +3,5 @@ interface Icon {
   color: string,
   style?: string
 }
+
+type FormType = "sign-in" | "sign-up";
