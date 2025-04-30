@@ -161,7 +161,7 @@ const PromptSection = ({user}:{user:any}) => {
                   <Textarea 
                     placeholder="Describe the image you want to generate..." 
                     {...field} 
-                    className="min-h-[120px] border focus-visible:ring-0 focus-visible:ring-offset-0"
+                    className="min-h-[120px] border-gray-700 focus-visible:border-gray-700 focus-visible:ring-0 focus-visible:ring-offset-0"
                   />
                 </FormControl>
                 <FormMessage />
