@@ -4,6 +4,7 @@ import Card from './Card'
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import axios from 'axios'
 
 import { Button } from "@/components/ui/button"
 import {
@@ -19,6 +20,8 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { aspectRatio } from '@/consts'
 import { cn } from '@/lib/utils'
+import { toast } from 'sonner'
+import { Loader2 } from 'lucide-react'
 
 // Perbaiki schema validasi:
 const formSchema = z.object({
@@ -98,11 +101,13 @@ const AspectRatioInput = ({
 }
 
 const PromptSection = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       prompt: "",
-      aspectRatio: "",
+      aspectRatio: '1:1',
       size: {
         width: 1024,
         height: 1024
@@ -110,8 +115,36 @@ const PromptSection = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {    
-    console.log("Submitted values:", values)
+  async function onSubmit(values: z.infer<typeof formSchema>) {    
+    console.log("Submitted values:", values);
+    setIsLoading(true);
+    try {
+      const res = await axios.post('/api/image/generate', {
+        prompt: values.prompt,
+        aspectRatio: values.aspectRatio,
+        size: values.size
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      console.log("Response data:", res.data);
+      
+      if (!res.data.success) {
+        throw new Error(res.data.error || 'Failed to generate image');
+      }
+  
+      // Handle successful response
+      // const imageData = res?.data;
+      
+    } catch (error:any) {
+      console.error("Error submitting form:", error);
+      // Tambahkan error handling ke UI
+      toast.error(error.response?.data?.error || error.message);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -172,9 +205,16 @@ const PromptSection = () => {
             )}
           />
 
-          <Button type="submit" className="w-full py-6 cursor-pointer">
-            Generate Image
-          </Button>
+          {isLoading ? (
+            <Button disabled className="w-full py-6">
+              <Loader2 className="animate-spin" />
+              Please wait
+            </Button>
+          ) : (
+            <Button type="submit" className="w-full py-6 cursor-pointer">
+              Generate Image
+            </Button>
+          )}
         </form>
       </Form>
     </Card>
