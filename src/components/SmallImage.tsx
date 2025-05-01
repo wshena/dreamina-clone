@@ -43,8 +43,9 @@ const SmallImage = ({ data }: { data: any | undefined }) => {
       )}
 
       {hover && (
-        <div className={cn(
-          "absolute top-0 left-0 w-full h-full p-[1rem] rounded-[10px]",
+        <div 
+        className={cn(
+          "z-30 absolute top-0 left-0 w-full h-full p-[1rem] rounded-[10px]",
           'transition-all duration-300 ease-in-out'
         )} style={{
           background: 'rgba(0, 0, 0, 0.15)',

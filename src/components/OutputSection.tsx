@@ -57,7 +57,7 @@ const OutputSection = ({user}:{user:any}) => {
       supabase.removeChannel(channel)
     }
   }, [user.id, loadImages])
-
+  console.log(allImage)
   return (
     <Card>
       <div className="flex flex-col items-start gap-[15px]">
@@ -80,7 +80,7 @@ const OutputSection = ({user}:{user:any}) => {
               ) : (
                 <div className="w-full flex flex-col items-start gap-[20px]">
                   {allImage?.map((item:any) => (
-                    <ResultContainer key={item?.id} id={item?.id} image={item?.result?.image} prompt={item?.result?.prompt} onDelete={loadImages} />
+                    <ResultContainer key={item?.id} id={item?.id} image={item?.result?.image} prompt={item?.result?.prompt} onDelete={loadImages} ratio={item?.result?.ratio} />
                   ))}
                 </div>
               )}

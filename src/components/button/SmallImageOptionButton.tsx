@@ -19,12 +19,12 @@ const SmallImageOptionButton = () => {
         <Tooltip>
           <TooltipTrigger asChild>
             <PopoverTrigger asChild>
-              <button 
+              <div 
                 className='p-[.5rem] cursor-pointer hover:bg-gray-500/90 bg-[#171a21]'
                 aria-label="More options"
               >
                 <OptionsIcon size={15} color="white" />
-              </button>
+              </div>
             </PopoverTrigger>
           </TooltipTrigger>
           <TooltipContent>

@@ -4,8 +4,9 @@ import SmallImage from './SmallImage'
 import RepromptButton from './button/RepromptButton'
 import RegenerateButton from './button/RegenerateButton'
 import DeleteBatchButton from './button/DeleteBatchButton'
+import ImageDetail from './ImageDetail'
 
-const ResultContainer = ({image, prompt, id, onDelete}:{image:any, prompt:string, id:string, onDelete:any}) => {
+const ResultContainer = ({image, prompt, id, onDelete, ratio}:{image:any, prompt:string, id:string, onDelete:any, ratio:string}) => {
   return (
     <div className="w-full flex items-start gap-[10px]">
       <div className="">
@@ -19,7 +20,14 @@ const ResultContainer = ({image, prompt, id, onDelete}:{image:any, prompt:string
           </div>
           <p className='text-[.9rem]'>{prompt}</p>
         </div>
-        <SmallImage data={image} />
+        <ImageDetail data={{
+          prompt,
+          image,
+          ratio
+        }}>
+          <SmallImage data={image} />
+        </ImageDetail>
+        {/* <SmallImage data={image} /> */}
         <div className="flex items-center gap-[8px]">
           <RepromptButton />
           <RegenerateButton />

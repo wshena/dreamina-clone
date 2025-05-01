@@ -12,7 +12,7 @@ const SmallImageBookmarkButton = () => {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <button className='p-[.5rem] cursor-pointer hover:bg-gray-500/90 bg-[#171a21]'> <BookmarkIcon size={15} color='white' /> </button>
+          <div className='p-[.5rem] cursor-pointer hover:bg-gray-500/90 bg-[#171a21]'> <BookmarkIcon size={15} color='white' /> </div>
         </TooltipTrigger>
         <TooltipContent>
           <span>Bookmark</span>

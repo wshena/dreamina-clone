@@ -4,4 +4,10 @@ interface Icon {
   style?: string
 }
 
+interface ImageDetailProps {
+  prompt: string,
+  image: string,
+  ratio: string
+}
+
 type FormType = "sign-in" | "sign-up";
