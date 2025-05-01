@@ -33,7 +33,7 @@ const layout = async ({children}:{children:React.ReactNode}) => {
         </MainContainer>
       </header>
 
-      <div className='pt-[70px] px-[.5rem] md:px-[1rem] 2xl:px-0'>
+      <div className='pt-[70px] pb-[50px] px-[.5rem] md:px-[1rem] 2xl:px-0'>
         <MainContainer>
           {children}
         </MainContainer>

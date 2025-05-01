@@ -150,7 +150,7 @@ const PromptSection = ({user}:{user:any}) => {
   return (
     <Card>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-[20px]">
           {/* Field untuk Prompt */}
           <FormField
             control={form.control}
