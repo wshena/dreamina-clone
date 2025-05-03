@@ -40,3 +40,16 @@ export function truncateString(input: string, maxLength: number): string {
 
   return (lastSpaceIndex > 0 ? truncated?.slice(0, lastSpaceIndex) : truncated) + "...";
 }
+
+export function formatDateTime(isoString:string) {
+  const d = new Date(isoString)
+
+  const day   = String(d.getDate()).padStart(2, '0')
+  const month = String(d.getMonth() + 1).padStart(2, '0') // 0-indexed
+  const year  = d.getFullYear()
+
+  const hours   = String(d.getHours()).padStart(2, '0')
+  const minutes = String(d.getMinutes()).padStart(2, '0')
+
+  return `${day}-${month}-${year}, ${hours}:${minutes}`
+}

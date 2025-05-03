@@ -65,7 +65,7 @@ const OutputSection = ({user}:{user:any}) => {
           <button aria-label='show-result-button' className='p-[.5rem] border border-gray-500 rounded-[10px] cursor-pointer'><FolderIcon size={15} color='white' /></button>
         </div>
 
-        <div className="flex flex-col items-start gap-[15px] h-fit md:h-[80vh] md:overflow-y-auto" style={{
+        <div className="w-full flex flex-col items-start gap-[15px] h-fit md:h-[80vh] md:overflow-y-auto" style={{
           scrollbarWidth: 'thin',
           scrollbarColor: '#4A5568 #F7FAFC',
         }}>
@@ -74,13 +74,13 @@ const OutputSection = ({user}:{user:any}) => {
           ) : (
             <>
               {allImage?.length <= 0 ? (
-                <div className='flex items-center justify-center w-full h-[500px]'>
+                <div className='flex items-center justify-center w-full h-full border border-gray-700 border-dashed rounded-[10px]'>
                   <span>Generate result will appear here</span>
                 </div>
               ) : (
                 <div className="w-full flex flex-col items-start gap-[20px]">
                   {allImage?.map((item:any) => (
-                    <ResultContainer key={item?.id} id={item?.id} image={item?.result?.image} prompt={item?.result?.prompt} onDelete={loadImages} ratio={item?.result?.ratio} />
+                    <ResultContainer key={item?.id} id={item?.id} image={item?.result?.image} prompt={item?.result?.prompt} onDelete={loadImages} ratio={item?.result?.ratio} createAt={item?.created_at} size={item?.result?.size} />
                   ))}
                 </div>
               )}

@@ -2,9 +2,11 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 // slice
 import utilityReducer from '@/lib/redux/slice/utilitySlice'
+import promptReducer from '@/lib/redux/slice/promptSlice'
 
 const rootReducer = combineReducers({
-  utility: utilityReducer
+  utility: utilityReducer,
+  prompt: promptReducer
 })
 
 export const makeStore = () => {

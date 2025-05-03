@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface initialStateProps {
-  aspectRatio: string
+  aspectRatio: string,
+  userId: string
 }
 
 const initialState:initialStateProps = {
-  aspectRatio: ''
+  aspectRatio: '',
+  userId: ''
 }
 
 export const utilitySlice = createSlice({
@@ -14,10 +16,13 @@ export const utilitySlice = createSlice({
   reducers: {
     setAspectRatio: (state, action:PayloadAction<string>) => {
       state.aspectRatio = action.payload
+    },
+    setUserId: (state, action:PayloadAction<string>) => {
+      state.userId = action.payload
     }
   }
 })
 
-export const { setAspectRatio } = utilitySlice.actions
+export const { setAspectRatio, setUserId } = utilitySlice.actions
 
 export default utilitySlice.reducer

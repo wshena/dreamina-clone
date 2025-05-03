@@ -20,7 +20,7 @@ const layout = async ({children}:{children:React.ReactNode}) => {
       <header className='fixed top-0 left-0 w-full z-50 bg-[rgb(15, 17, 21)]' style={{
         backgroundColor: 'rgb(15, 17, 21)'
       }}>
-        <MainContainer>
+        <MainContainer userId={currentUser?.id}>
           <nav className='w-full py-[1rem] px-[1rem] 2xl:px-0 flex items-center justify-between'>
             <Link href={'/'}>
               <Button variant={'default'} className='cursor-pointer' aria-label='back-button'>
@@ -34,7 +34,7 @@ const layout = async ({children}:{children:React.ReactNode}) => {
       </header>
 
       <div className='pt-[70px] pb-[50px] px-[.5rem] md:px-[1rem] 2xl:px-0'>
-        <MainContainer>
+        <MainContainer userId={currentUser?.id}>
           {children}
         </MainContainer>
       </div>

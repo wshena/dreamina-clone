@@ -23,7 +23,7 @@ export async function POST(req:NextRequest) {
     }
 
     // add to database
-    const imageResult = await addImageResult(prompt, aspectRatio, result?.data?.base64, userId)
+    const imageResult = await addImageResult(prompt, size, aspectRatio, result?.data?.base64, userId)
     if (!imageResult.success) {
       return NextResponse.json({ error: imageResult.error }, { status: 500 })
     }

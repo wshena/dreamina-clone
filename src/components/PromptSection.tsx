@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from './Card'
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -23,6 +23,8 @@ import { cn } from '@/lib/utils'
 import { toast } from 'sonner'
 import { Loader2 } from 'lucide-react'
 import { addImageResult } from '@/utils/actions/db.action'
+import { useAppSelector } from '@/lib/redux/hooks'
+import { RootState } from '@/lib/redux/store'
 
 // Perbaiki schema validasi:
 const formSchema = z.object({
@@ -102,12 +104,15 @@ const AspectRatioInput = ({
 }
 
 const PromptSection = ({user}:{user:any}) => {
+  const reduxPrompt = useAppSelector((state:RootState) => state.prompt.prompt);
+  const repromptCount    = useAppSelector(s => s.prompt.repromptCount)
+  
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      prompt: "",
+      prompt: reduxPrompt || '',
       aspectRatio: '1:1',
       size: {
         width: 1024,
@@ -115,6 +120,14 @@ const PromptSection = ({user}:{user:any}) => {
       }
     },
   });
+
+  // sinkronkan form.prompt dengan reduxPrompt
+  useEffect(() => {
+    form.setValue('prompt', reduxPrompt || '', {
+      shouldDirty: true,
+      shouldValidate: true,
+    })
+  }, [reduxPrompt, repromptCount, form])
 
   async function onSubmit(values: z.infer<typeof formSchema>) {    
     console.log("Submitted values:", values);

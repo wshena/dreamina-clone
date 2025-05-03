@@ -6,7 +6,8 @@ interface initialStateProps {
     width: number,
     height: number
   },
-  aspectRatio: string
+  aspectRatio: string,
+  repromptCount: number
 }
 
 const initialState:initialStateProps = {
@@ -15,7 +16,8 @@ const initialState:initialStateProps = {
     width: 0,
     height: 0
   },
-  aspectRatio: ''
+  aspectRatio: '',
+  repromptCount: 0
 }
 
 export const promptSlice = createSlice({
@@ -23,7 +25,8 @@ export const promptSlice = createSlice({
   initialState: initialState,
   reducers: {
     setPrompt: (state, action:PayloadAction<string>) => {
-      state.prompt = action.payload
+      state.prompt = action.payload;
+      state.repromptCount += 1;
     },
     setAspectRatio: (state, action:PayloadAction<string>) => {
       state.aspectRatio = action.payload

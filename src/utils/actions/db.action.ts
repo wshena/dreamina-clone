@@ -2,13 +2,14 @@
 
 import { supabase } from "../supabase/client"
 
-export async function addImageResult(prompt:string, ratio:{width:string, height:string}, data: any, userId:string) {
+export async function addImageResult(prompt:string, size:{width:string, height:string}, ratio:string, data: any, userId:string) {
   const { data: generateResult, error } = await supabase
     .from('image-result')
     .insert({
       user_id: userId,
       result: {
         prompt: prompt,
+        size: size,
         ratio: ratio,
         image: data
       }
